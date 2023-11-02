@@ -1,6 +1,6 @@
 const colors = document.querySelectorAll(".color");
 const generateButton = document.querySelector(".generate-button");
-let letters = "0123456789ABCDEF";
+const letters = "0123456789ABCDEF";
 
 function totalColorChange(target) {
   function getHexCode() {
@@ -29,6 +29,8 @@ generateButton.addEventListener("click", buttonColorGenerate);
 
 colors.forEach((color) => {
   color.addEventListener("click", () => {
-    navigator.clipboard.writeText(color.textContent);
+    navigator.clipboard.writeText(color.textContent).catch((error) => {
+      console.log('Failed to copy hex code.', error);
+    });
   });
 });
